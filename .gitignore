@@ -1,0 +1,15 @@
+# Carpeta de CLion
+.idea
+
+# Archivos compilados
+*.o
+*.so
+app-cliente-1
+app-cliente-2
+app-cliente-3
+app-cliente-4
+app-cliente-5
+app-cliente-6
+
+# Archivos generados por la aplicación
+var
