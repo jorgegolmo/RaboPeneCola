@@ -10,12 +10,11 @@
 static struct timeval TIMEOUT = { 25, 0 };
 
 enum clnt_stat 
-set_value_rpc_1(int key, char *value1, int N_value2, doubles_array V_value2, struct Coord value3, int *clnt_res,  CLIENT *clnt)
+set_value_rpc_1(int key, char *value1, doubles_array V_value2, struct Coord value3, int *clnt_res,  CLIENT *clnt)
 {
 	set_value_rpc_1_argument arg;
 	arg.key = key;
 	arg.value1 = value1;
-	arg.N_value2 = N_value2;
 	arg.V_value2 = V_value2;
 	arg.value3 = value3;
 	return (clnt_call (clnt, set_value_rpc, (xdrproc_t) xdr_set_value_rpc_1_argument, (caddr_t) &arg,

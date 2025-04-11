@@ -35,8 +35,6 @@ xdr_set_value_rpc_1_argument (XDR *xdrs, set_value_rpc_1_argument *objp)
 		 return FALSE;
 	 if (!xdr_string (xdrs, &objp->value1, ~0))
 		 return FALSE;
-	 if (!xdr_int (xdrs, &objp->N_value2))
-		 return FALSE;
 	 if (!xdr_doubles_array (xdrs, &objp->V_value2))
 		 return FALSE;
 	 if (!xdr_Coord (xdrs, &objp->value3))

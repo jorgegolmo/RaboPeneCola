@@ -6,6 +6,7 @@
 
 #include "set.h"
 #include <stdio.h>
+#include <stdlib.h>
 #include "claves.h"
 
 
@@ -16,25 +17,25 @@ int set_value(int key, char *value1, int N_value2, double *V_value2, struct Coor
 	int result_1;
 	int set_value_rpc_1_key = key;
 	char *set_value_rpc_1_value1 = value1;
-	int set_value_rpc_1_N_value2 = 0;
 	doubles_array set_value_rpc_1_V_value2;
-    set_value_rpc_1_V_value2.doubles_array_len = N_value2;
+    set_value_rpc_1_V_value2.doubles_array_len = (u_int) N_value2;
     set_value_rpc_1_V_value2.doubles_array_val = V_value2;
 	struct Coord set_value_rpc_1_value3 = value3;
 
-     char *host = "localhost";
-
+	// Obtener IP de variables de entorno
+	char *host = getenv("IP_TUPLAS");
 
 #ifndef	DEBUG
 	clnt = clnt_create (host, TUPLAS, PRUEBA, "tcp");
 	if (clnt == NULL) {
 		clnt_pcreateerror (host);
-		exit (1);
+		return -1;
 	}
 #endif	/* DEBUG */
 
-	retval_1 = set_value_rpc_1(set_value_rpc_1_key, set_value_rpc_1_value1, set_value_rpc_1_N_value2, set_value_rpc_1_V_value2, set_value_rpc_1_value3, &result_1, clnt);
+	retval_1 = set_value_rpc_1(set_value_rpc_1_key, set_value_rpc_1_value1, set_value_rpc_1_V_value2, set_value_rpc_1_value3, &result_1, clnt);
 	if (retval_1 != RPC_SUCCESS) {
+		result_1 = -1;
 		clnt_perror (clnt, "call failed");
 	}
 
@@ -53,18 +54,20 @@ int exist(int key)
 	int result_2;
 	int exist_1_key = key;
 
-    char *host = "localhost";
+	// Obtener IP de variables de entorno
+	char* host = getenv("IP_TUPLAS");
 
 #ifndef	DEBUG
 	clnt = clnt_create (host, TUPLAS, PRUEBA, "tcp");
 	if (clnt == NULL) {
 		clnt_pcreateerror (host);
-		exit (1);
+		return -1;
 	}
 #endif	/* DEBUG */
 
 	retval_2 = exist_rpc_1(exist_1_key, &result_2, clnt);
 	if (retval_2 != RPC_SUCCESS) {
+		result_2 = -1;
 		clnt_perror (clnt, "call failed");
 	}
 #ifndef	DEBUG
@@ -90,7 +93,6 @@ int main (int argc, char *argv[])
     result = exist(2);
 
     printf("El resultado de la función es: %d\n", result);
-
 
 	return 0;
 }

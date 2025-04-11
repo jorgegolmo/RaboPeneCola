@@ -19,7 +19,7 @@
 int
 _set_value_rpc_1 (set_value_rpc_1_argument *argp, void *result, struct svc_req *rqstp)
 {
-	return (set_value_rpc_1_svc(argp->key, argp->value1, argp->N_value2, argp->V_value2, argp->value3, result, rqstp));
+	return (set_value_rpc_1_svc(argp->key, argp->value1, argp->V_value2, argp->value3, result, rqstp));
 }
 
 int

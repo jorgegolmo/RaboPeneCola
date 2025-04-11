@@ -9,11 +9,13 @@
 #include <rpc/rpc.h>
 #include "claves.h"
 
+
 #include <pthread.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif
+
 
 typedef struct Coord Coord;
 
@@ -25,7 +27,6 @@ typedef struct {
 struct set_value_rpc_1_argument {
 	int key;
 	char *value1;
-	int N_value2;
 	doubles_array V_value2;
 	struct Coord value3;
 };
@@ -36,8 +37,8 @@ typedef struct set_value_rpc_1_argument set_value_rpc_1_argument;
 
 #if defined(__STDC__) || defined(__cplusplus)
 #define set_value_rpc 1
-extern  enum clnt_stat set_value_rpc_1(int , char *, int , doubles_array , struct Coord , int *, CLIENT *);
-extern  bool_t set_value_rpc_1_svc(int , char *, int , doubles_array , struct Coord , int *, struct svc_req *);
+extern  enum clnt_stat set_value_rpc_1(int , char *, doubles_array , struct Coord , int *, CLIENT *);
+extern  bool_t set_value_rpc_1_svc(int , char *, doubles_array , struct Coord , int *, struct svc_req *);
 #define exist_rpc 2
 extern  enum clnt_stat exist_rpc_1(int , int *, CLIENT *);
 extern  bool_t exist_rpc_1_svc(int , int *, struct svc_req *);

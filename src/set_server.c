@@ -8,38 +8,22 @@
 #include "claves.h"
 
 bool_t
-set_value_rpc_1_svc(int key, char *value1, int N_value2, doubles_array V_value2, struct Coord value3, int *result,  struct svc_req *rqstp)
+set_value_rpc_1_svc(int key, char *value1, doubles_array V_value2, struct Coord value3, int *result,  struct svc_req *rqstp)
 {
-	bool_t retval;
+	bool_t retval = TRUE;
 
-	/*
-	 * insert server code here
-	 */
-
-    if (value1 == NULL || V_value2.doubles_array_val == NULL){
-      *result = -1;
-    }
-
-	int num = (int) V_value2. doubles_array_len;
+	int num = (int) V_value2.doubles_array_len;
     *result = set_value (key, value1, num, V_value2.doubles_array_val, value3);
 
-    retval = TRUE;
-
-	return retval;
+     return retval;
 }
 
 bool_t
 exist_rpc_1_svc(int key, int *result,  struct svc_req *rqstp)
 {
-	bool_t retval;
+	bool_t retval = TRUE;
 
-	/*
-	 * insert server code here
-	 */
-
-     *result = exist(key);
-
-     retval = TRUE;
+   *result = exist(key);
 
 	return retval;
 }
